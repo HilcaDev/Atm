@@ -43,7 +43,7 @@ export class AtmService {
   }
 
   creadencialsValidation(person: IdataAccountFriend): boolean {
-    let coincidences = arrayUsers.filter(element => (element.username === person.username) || (element.password == person.password) || (element.fullName == person.fullName) || (element.email == person.email));
+    let coincidences = arrayUsers.filter(element => (element.username === person.username) || (element.password === person.password) || (element.fullName === person.fullName) || (element.email === person.email));
     if (coincidences.length > 0) {
       return true;
     } else {

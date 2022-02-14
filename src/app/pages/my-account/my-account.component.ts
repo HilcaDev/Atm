@@ -37,7 +37,6 @@ export class MyAccountComponent {
       this.arrayFriends = this.localStorageService.getLocalStorage('storageArrayFriends');
        this.lenghtArrayFriends = this.arrayFriends.length;
     } else {
-      Swal.fire(messages[3]);
       this.lenghtArrayFriends = 0;
     }
   }

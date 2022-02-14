@@ -37,21 +37,13 @@ export class CreateAccountComponent {
     })
   }
 
-  get fullNameField() { return this.miFormulario.get('fullName') };
-  get emailField() { return this.miFormulario.get('email') };
-  get rolField() { return this.miFormulario.get('rol') };
-  get numberAccountField() { return this.miFormulario.get('numberAccount') };
-  get accountBalanceField() { return this.miFormulario.get('accountBalance') };
-  get usernameField() { return this.miFormulario.get('username') };
-  get passwordField() { return this.miFormulario.get('password') };
-
   createAccountNewUser() {
     this.newUser = this.miFormulario.value;
     if (this.atmService.creadencialsValidation(this.newUser)) {
       Swal.fire(messages[2]);
     } else {
-      console.log('primera verificacion GET', localStorage.getItem('storageArrayFriends'));
-      if (((localStorage.getItem('storageArrayFriends') == null) || localStorage.getItem('storageArrayFriends') == undefined) && !localStorage.getItem('storageArrayFriends')) {
+      //console.log('primera verificacion GET', localStorage.getItem('storageArrayFriends'));
+      if (((localStorage.getItem('storageArrayFriends') === null) || localStorage.getItem('storageArrayFriends') === undefined) && !localStorage.getItem('storageArrayFriends')) {
         console.log('entra en el if')
         this.arrayFriends.push(this.newUser);
         this.localStorageService.setLocalStorage('storageArrayFriends', this.arrayFriends);
@@ -69,6 +61,14 @@ export class CreateAccountComponent {
       }
     }
   }
+
+  get fullNameField() { return this.miFormulario.get('fullName') };
+  get emailField() { return this.miFormulario.get('email') };
+  get rolField() { return this.miFormulario.get('rol') };
+  get numberAccountField() { return this.miFormulario.get('numberAccount') };
+  get accountBalanceField() { return this.miFormulario.get('accountBalance') };
+  get usernameField() { return this.miFormulario.get('username') };
+  get passwordField() { return this.miFormulario.get('password') };
 }
 
 
