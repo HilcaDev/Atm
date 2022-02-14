@@ -1,0 +1,98 @@
+<div class="mt-5 d-flex justify-content-center mb-5">
+  <div class="card" style="width: 40rem;">
+    <div class="card-body">
+      <div class="row">
+        <div class="col">
+          <h5 class="card-title text-center text-info fw-bold">REGISTRAR CUENTA</h5>
+          <form [formGroup]="miFormulario" (ngSubmit)="createAccountNewUser()">
+            <div class="form-group mb-3">
+              <label>Nombre Completo</label>
+              <input type="text" class="form-control" placeholder="Ingrese su nombre completo"
+                formControlName="fullName">
+              <div class="form-text text-danger" *ngIf="fullNameField?.invalid && fullNameField?.touched">
+                <div *ngIf="fullNameField?.errors?.['required']">
+                  Debe diligenciar su nombre completo
+                </div>
+              </div>
+            </div>
+            <div class="form-group mb-3">
+              <label>Email</label>
+              <input type="email" class="form-control" placeholder="Ingrese su email" formControlName="email">
+              <div class="form-text text-danger" *ngIf="emailField?.invalid && emailField?.touched">
+                <div *ngIf="emailField?.errors?.['required']">
+                  Debe diligenciar su email
+                </div>
+                <div *ngIf="emailField?.errors?.['email']">
+                  El formato de texto debe ser de tipo email.
+                </div>
+              </div>
+            </div>
+            <div class="form-group mb-3">
+              <label>Rol</label>
+              <input type="text" class="form-control" placeholder="Diligencie su cargo" formControlName="rol">
+              <div class="form-text text-danger" *ngIf="rolField?.invalid && rolField?.touched">
+                <div *ngIf="rolField?.errors?.['required']">
+                  Debe diligenciar su cargo
+                </div>
+                <div *ngIf="rolField?.errors?.['minlength']">
+                  Debe diligenciar mínimo 3 letras
+                </div>
+              </div>
+            </div>
+            <div class="form-group mb-3">
+              <label>Numero Cuenta</label>
+              <input type="number" class="form-control" placeholder="Diligencie su número de cuenta"
+                formControlName="numberAccount">
+              <div class="form-text text-danger" *ngIf="numberAccountField?.invalid && numberAccountField?.touched">
+                <div *ngIf="numberAccountField?.errors?.['required']">
+                  Debe diligenciar un valor
+                </div>
+                <div *ngIf="numberAccountField?.errors?.['min']">
+                  El valor diligenciado no puede ser negativo
+                </div>
+              </div>
+            </div>
+            <div class="form-group mb-3">
+              <label>Saldo Cuenta</label>
+              <input type="number" class="form-control" placeholder="Diligencie su saldo inicial"
+                formControlName="accountBalance">
+              <div class="form-text text-danger" *ngIf="accountBalanceField?.invalid && accountBalanceField?.touched">
+                <div *ngIf="accountBalanceField?.errors?.['required']">
+                  Debe diligenciar un valor
+                </div>
+                <div *ngIf="accountBalanceField?.errors?.['min']">
+                  El valor diligenciado no puede ser negativo
+                </div>
+              </div>
+            </div>
+            <div class="form-group mb-3">
+              <label>Username</label>
+              <input type="text" class="form-control" placeholder="Diligencie su username" formControlName="username">
+              <div class="form-text text-danger" *ngIf="usernameField?.invalid && usernameField?.touched">
+                <div *ngIf="usernameField?.errors?.['required']">
+                  Debe diligenciar el username
+                </div>
+              </div>
+            </div>
+            <div class="form-group mb-3">
+              <label>Contraseña</label>
+              <input type="password" class="form-control" placeholder="Diligencie su contraseña"
+                formControlName="password">
+              <div class="form-text text-danger" *ngIf="passwordField?.invalid && passwordField?.touched">
+                <div *ngIf="passwordField?.errors?.['required']">
+                  Debe diligenciar la contraseña
+                </div>
+                <div *ngIf="passwordField?.errors?.['minlength']">
+                  La contraseña debe ser mínimo de 6 dígitos
+                </div>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-info" [disabled]="!miFormulario.valid">
+              Crear Usuario
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
