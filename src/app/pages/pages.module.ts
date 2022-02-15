@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
+import { CommonModule, registerLocaleData } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 import { PagesRoutingModule } from './pages-routing.module';
 import { HomeComponent } from './home/home.component';
 import { CreateAccountComponent } from './create-account/create-account.component';
@@ -10,8 +10,8 @@ import { TranferMoneyComponent } from './tranfer-money/tranfer-money.component';
 import { WithdrawalsComponent } from './withdrawals/withdrawals.component';
 import { SharedModule } from '../shared/shared.module';
 import { AuthProvider } from '../domain/providers/auth.provider';
-import { ReactiveFormsModule } from '@angular/forms';
 import { localSProvider } from '../domain/providers/localS.provider';
+import { AtmModule } from '../core/atm.module';
 
 
 @NgModule({
@@ -27,7 +27,8 @@ import { localSProvider } from '../domain/providers/localS.provider';
     CommonModule,
     PagesRoutingModule,
     SharedModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AtmModule
   ],
   providers: [AuthProvider, localSProvider]
 })

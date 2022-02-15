@@ -11,9 +11,10 @@ import { arrayUsers } from '../constants/arrayDataAccount';
 export class AtmService {
 
   accountBalance!: number;
-  currentValue: number = 0;
+  currentValueUser: number = 0;
+  currentValueFriend: number = 0;
   arrayFriends: IdataAccountFriend[] = [];
-  coincidence:boolean = false;
+  coincidence: boolean = false;
 
   constructor(@Inject('localSRepository') private localStorageService: ILocalSRepository) { }
 
@@ -24,21 +25,27 @@ export class AtmService {
   }
 
   depositMoney(depositValue: number) {
-    this.currentValue = this.getAccountValue() + depositValue;
+    this.currentValueUser = this.getAccountValue() + depositValue;
     let dataAccount = this.localStorageService.getLocalStorage('userAccount');
-    dataAccount.accountBalance = this.currentValue;
+    dataAccount.accountBalance = this.currentValueUser;
     this.localStorageService.setLocalStorage('userAccount', dataAccount);
+  }
+
+  setCurrentValueUser(withdrawalValue: number) {
+    this.currentValueUser = this.getAccountValue() - withdrawalValue;
+    let dataAccount = this.localStorageService.getLocalStorage('userAccount');
+    dataAccount.accountBalance = this.currentValueUser;
+    this.localStorageService.setLocalStorage('userAccount', dataAccount);
+    //console.log('valor actual despues de retirar', dataAccount.accountBalance);
   }
 
   withdrawalMoney(withdrawalValue: number) {
     if (withdrawalValue > this.getAccountValue()) {
       Swal.fire(messages[0]);
+      return false;
     } else {
-      this.currentValue = this.getAccountValue() - withdrawalValue;
-      let dataAccount = this.localStorageService.getLocalStorage('userAccount');
-      dataAccount.accountBalance = this.currentValue;
-      this.localStorageService.setLocalStorage('userAccount', dataAccount);
-      console.log('valor actual despues de retirar', dataAccount.accountBalance);
+      this.setCurrentValueUser(withdrawalValue);
+      return true;
     }
   }
 
@@ -54,22 +61,29 @@ export class AtmService {
   transferMoney(value: number, numberAccount: number) {
     if (localStorage.hasOwnProperty("storageArrayFriends")) {
       this.arrayFriends = this.localStorageService.getLocalStorage('storageArrayFriends');
-      this.arrayFriends.some(element => {
+      this.arrayFriends.filter(element => {
         if (element.numberAccount === numberAccount) { // coincide el la cuenta digitada con la almacenada
+          console.log('entra');
           this.coincidence = true;
-          this.withdrawalMoney(value); // actualiza el valor de la cuenta del usuario
-          this.currentValue = element.accountBalance + value;
-          element.accountBalance = this.currentValue;
-          this.localStorageService.setLocalStorage('storageArrayFriends', this.arrayFriends);
+          if (value <= this.getAccountValue()) {
+            this.setCurrentValueUser(value);
+            this.currentValueFriend = element.accountBalance + value;
+            console.log('current value', this.currentValueFriend);
+            element.accountBalance = this.currentValueFriend;
+            this.localStorageService.setLocalStorage('storageArrayFriends', this.arrayFriends);
+          } else {
+            Swal.fire(messages[0]);
+          }
         }
       })
     } else {
-      Swal.fire(messages[3]);
+      console.log('entra else 2 ')
+      Swal.fire(messages[4]);
     }
   }
 
-  verificationSameAccounts(){
-    if(this.coincidence !== true){
+  verificationSameAccounts() {
+    if (this.coincidence !== true) {
       Swal.fire(messages[4]);
     }
   }

@@ -44,8 +44,9 @@ export class CreateAccountComponent {
     } else {
       //console.log('primera verificacion GET', localStorage.getItem('storageArrayFriends'));
       if (((localStorage.getItem('storageArrayFriends') === null) || localStorage.getItem('storageArrayFriends') === undefined) && !localStorage.getItem('storageArrayFriends')) {
-        console.log('entra en el if')
+        //console.log('entra en el if')
         this.arrayFriends.push(this.newUser);
+        Swal.fire(messages[3]);
         this.localStorageService.setLocalStorage('storageArrayFriends', this.arrayFriends);
       } else {
         if (localStorage.hasOwnProperty("storageArrayFriends")) {
@@ -55,6 +56,7 @@ export class CreateAccountComponent {
             Swal.fire(messages[2]);
           } else {
             this.arrayFriends.push(this.newUser);
+            Swal.fire(messages[3]);
             this.localStorageService.setLocalStorage('storageArrayFriends', this.arrayFriends);
           }
         }

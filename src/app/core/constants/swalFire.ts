@@ -17,9 +17,9 @@ export const messages: SwalFire[] = [
     text: 'Los datos sumnistrados ya fueron utilizados por otro usuario'
   },
   {
-    icon: 'info',
-    title: 'Oops',
-    text: 'Aún no no tienes cuentas de amigos creadas'
+    icon: 'success',
+    title: 'Usuario registrado',
+    text: 'Usuario registrado exitosamente'
   },
   {
     icon: 'warning',

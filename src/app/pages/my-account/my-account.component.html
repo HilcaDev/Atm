@@ -1,11 +1,16 @@
 <div class="container">
   <div class="row">
-    <h3 class="text-center mt-5 mb-4 text-info fw-bold">{{title}}</h3>
-    <p><span class="fw-bold">Nombre Completo</span>: {{myUser.fullName | titlecase}}</p>
-    <p><span class="fw-bold">Correo Electrónico</span>: {{myUser.email}}</p>
-    <p><span class="fw-bold">Cargo</span>: {{myUser.rol | titlecase}}</p>
-    <p><span class="fw-bold">Username</span>: {{myUser.username}}</p>
-    <p><span class="fw-bold">Saldo Cuenta</span>: {{myUser.accountBalance| number}}</p>
-    <p><span class="fw-bold">Número de cuentas de amigos creadas</span>: {{lenghtArrayFriends}}</p>
+      <h3 class="text-center mt-5 mb-4 text-info fw-bold">{{title}}</h3>
+      <p class="text-end fw-lighter"> {{date | date:'medium'}}</p>
+      <p><span class="fw-bold">Nombre Completo</span>: {{myUser.fullName | titlecase}}</p>
+      <p><span class="fw-bold">Correo Electrónico</span>: {{myUser.email}}</p>
+      <p><span class="fw-bold">Cargo</span>: {{myUser.rol | titlecase}}</p>
+      <p><span class="fw-bold">Username</span>: {{myUser.username}}</p>
+      <p><span class="fw-bold">Saldo Cuenta</span>: {{myUser.accountBalance| number}}</p>
+      <p><span class="fw-bold">Número de cuentas de amigos creadas</span>: {{lenghtArrayFriends}}</p>
+  </div>
+  <div>
+    <!--<img class="column-image" style="width: 20rem;" src="https://www.widgetfinancial.com/wp-content/uploads/2020/10/Savings-MD-01.png">-->
+    <img brokeImage class="container-image" style="width: 20rem;" src="https://www.widgetfinancial.com/wp-content/uploads/2020/06/Artboard-6icon.png">
   </div>
 </div>

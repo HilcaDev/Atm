@@ -3,7 +3,7 @@
     <div class="card-body">
       <div class="row">
         <div class="col">
-          <h5 class="card-title text-center text-info fw-bold">REGISTRAR CUENTA</h5>
+          <h3 class="text-info text-center fw-bold my-3">Transferencias</h3>
           <form [formGroup]="miFormulario" (ngSubmit)="createAccountNewUser()">
             <div class="form-group mb-3">
               <label>Nombre Completo</label>
@@ -87,7 +87,7 @@
                 </div>
               </div>
             </div>
-            <button type="submit" class="btn btn-info" [disabled]="!miFormulario.valid">
+            <button type="submit" class="btn btn-info my-3" [disabled]="!miFormulario.valid">
               Crear Usuario
             </button>
           </form>

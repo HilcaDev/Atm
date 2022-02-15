@@ -16,8 +16,9 @@ export class MyAccountComponent {
   title = "Información Personal"
   myUser!: IdataAccounts;
   arrayFriends: IdataAccountFriend[] = [];
-  myAccountBalance!: number;
   lenghtArrayFriends:number = 0;
+  date = new Date();
+
 
   constructor(private AtmService: AtmService,
     @Inject('localSRepository') private localStorageService: ILocalSRepository) { }
