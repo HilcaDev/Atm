@@ -12,7 +12,6 @@ import { ILocalSRepository } from '../../domain/repository/localS.repository';
   styleUrls: ['./create-account.component.scss']
 })
 export class CreateAccountComponent {
-
   miFormulario!: FormGroup;
   newUser!: IdataAccountFriend;
   arrayFriends: IdataAccountFriend[] = [];
@@ -42,9 +41,7 @@ export class CreateAccountComponent {
     if (this.atmService.creadencialsValidation(this.newUser)) {
       Swal.fire(messages[2]);
     } else {
-      //console.log('primera verificacion GET', localStorage.getItem('storageArrayFriends'));
       if (((localStorage.getItem('storageArrayFriends') === null) || localStorage.getItem('storageArrayFriends') === undefined) && !localStorage.getItem('storageArrayFriends')) {
-        //console.log('entra en el if')
         this.arrayFriends.push(this.newUser);
         Swal.fire(messages[3]);
         this.localStorageService.setLocalStorage('storageArrayFriends', this.arrayFriends);
@@ -72,45 +69,3 @@ export class CreateAccountComponent {
   get usernameField() { return this.miFormulario.get('username') };
   get passwordField() { return this.miFormulario.get('password') };
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  //this.arrayFriends.push(this.newUser);
-     // if (localStorage.getItem('storageDataFriends') !== undefined && localStorage.getItem('storageDataFriends')) {
-       // let storageArrayFriends = this.localStorageService.getLocalStorage('storageDataFriends');
-       // storageArrayFriends.push(this.newUser);
-       // this.localStorageService.setLocalStorage('storageDataFriends', this.arrayFriends);
-       //else {
-      // this.localStorageService.setLocalStorage('storageDataFriends', this.arrayFriends);
-      //console.log('entra en el else')
-    //}
-
-
-
-    //CORRECTO
-   // console.log('primera verificacion GET',localStorage.getItem('storageArrayFriends'));
-      //if (((localStorage.getItem('storageArrayFriends') == null) || localStorage.getItem('storageArrayFriends') == undefined) && !localStorage.getItem('storageArrayFriends')){
-      //  console.log('entra en el if')
-        //this.arrayFriends.push(this.newUser);
-       // this.localStorageService.setLocalStorage('storageArrayFriends', this.arrayFriends);
-      //} else {
-        //if (localStorage.hasOwnProperty("storageArrayFriends")) {
-        //  this.arrayFriends = this.localStorageService.getLocalStorage('storageArrayFriends');
-        //  this.arrayFriends.push(this.newUser);
-        //  this.localStorageService.setLocalStorage('storageArrayFriends', this.arrayFriends);
-      //  }
-      //  }
-    //  }

@@ -9,7 +9,6 @@ import { arrayUsers } from '../constants/arrayDataAccount';
   providedIn: 'root'
 })
 export class AtmService {
-
   accountBalance!: number;
   currentValueUser: number = 0;
   currentValueFriend: number = 0;
@@ -36,7 +35,6 @@ export class AtmService {
     let dataAccount = this.localStorageService.getLocalStorage('userAccount');
     dataAccount.accountBalance = this.currentValueUser;
     this.localStorageService.setLocalStorage('userAccount', dataAccount);
-    //console.log('valor actual despues de retirar', dataAccount.accountBalance);
   }
 
   withdrawalMoney(withdrawalValue: number) {
@@ -63,12 +61,10 @@ export class AtmService {
       this.arrayFriends = this.localStorageService.getLocalStorage('storageArrayFriends');
       this.arrayFriends.filter(element => {
         if (element.numberAccount === numberAccount) { // coincide el la cuenta digitada con la almacenada
-          console.log('entra');
           this.coincidence = true;
           if (value <= this.getAccountValue()) {
             this.setCurrentValueUser(value);
             this.currentValueFriend = element.accountBalance + value;
-            console.log('current value', this.currentValueFriend);
             element.accountBalance = this.currentValueFriend;
             this.localStorageService.setLocalStorage('storageArrayFriends', this.arrayFriends);
           } else {
@@ -77,7 +73,6 @@ export class AtmService {
         }
       })
     } else {
-      console.log('entra else 2 ')
       Swal.fire(messages[4]);
     }
   }
@@ -88,95 +83,3 @@ export class AtmService {
     }
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  //private _userAccount: IdataAccounts | undefined;
-
-  // let keys = Object.keys(localStorage)
-    //console.log(keys);
-    // this.userAccount.accountBalance = this.currentValue;
-    //console.log('valorActual',this.currentValue)
-  //}
-
-
-  //getLocalStorage(name: string) {
-    //return JSON.parse(localStorage.getItem(name) || '{}');
- // }
-
-  //setLocalStorage(name: string, value: any):void {
-   // return localStorage.setItem(name, JSON.stringify(value));
-  //}
-
-
-
-  //getAccountValue() {
-    //let dataAccount = this.localStorageService.getLocalStorage('userAccount');
-//    this.accountBalance = dataAccount.accountBalance;
-    //return this.accountBalance;
- // }
-
-  //depositMoney(depositValue: number) {
-  //  this.currentValue = this.getAccountValue() + depositValue;
-//    let dataAccount = this.localStorageService.getLocalStorage('userAccount');
-  //  dataAccount.accountBalance = this.currentValue;
-    //this.setLocalStorage('userAccount', dataAccount);
-  //  this.localStorageService.setLocalStorage('userAccount', dataAccount);
-  //}
-
- // withdrawalMoney(withdrawalValue: number) {
-   // if(withdrawalValue > this.getAccountValue()){
-  //    Swal.fire(messages[0]);
-   // }else{
-   //   this.currentValue = this.getAccountValue() - withdrawalValue;
-      //let dataAccount = this.getLocalStorage('userAccount');
-   //   let dataAccount = this.localStorageService.getLocalStorage('userAccount');
-   //   dataAccount.accountBalance = this.currentValue;
-     // this.setLocalStorage('userAccount', dataAccount);
-   //   this.localStorageService.setLocalStorage('userAccount', dataAccount);
-   //   console.log('valor actual despues de retirar', dataAccount.accountBalance);
-
-
-   //transferMoney(value: number, numberAccount: number) {
-   // if (localStorage.hasOwnProperty("storageArrayFriends")) {
-     // this.arrayFriends = this.localStorageService.getLocalStorage('storageArrayFriends');
-     // this.arrayFriends.some(element => {
-      //  if (element.numberAccount === numberAccount) { // coincide el la cuenta digitada con la almacenada
-      //    this.withdrawalMoney(value); // actualiza el valor de la cuenta del usuario
-        ////  this.currentValue = element.accountBalance + value;
-        //  element.accountBalance = this.currentValue;
-       //   this.localStorageService.setLocalStorage('storageArrayFriends', this.arrayFriends);
-       // } else {
-        //  console.log('entra en el else')
-       //   Swal.fire(messages[4]);
-       // }
-     // })
-   // } else {
-     // Swal.fire(messages[3]);

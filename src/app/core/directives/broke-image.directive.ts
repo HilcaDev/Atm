@@ -5,6 +5,7 @@ import { Directive, ElementRef, HostListener, Input } from '@angular/core';
 })
 export class BrokeImageDirective {
   @Input() urlImage!:string;
+
   constructor(private elementRef:ElementRef) { }
 
   @HostListener('error')

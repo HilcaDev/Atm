@@ -13,7 +13,6 @@ import { AuthProvider } from '../domain/providers/auth.provider';
 import { localSProvider } from '../domain/providers/localS.provider';
 import { AtmModule } from '../core/atm.module';
 
-
 @NgModule({
   declarations: [
     HomeComponent,

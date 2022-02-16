@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ValidationGuard } from './core/guards/validation.guard';
@@ -10,7 +9,6 @@ import { localSProvider } from './domain/providers/localS.provider';
 @NgModule({
   declarations: [
     AppComponent
-
   ],
   imports: [
     BrowserModule,

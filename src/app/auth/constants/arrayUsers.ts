@@ -10,4 +10,3 @@ export const arrayUsers: IUser[] = [
     password: '111111'
   }
 ]
-

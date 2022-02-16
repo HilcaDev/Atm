@@ -10,7 +10,6 @@ import { ILocalSRepository } from 'src/app/domain/repository/localS.repository';
   styleUrls: ['./deposit-money.component.scss']
 })
 export class DepositMoneyComponent implements OnInit {
-
   myUser!:IdataAccounts;
   miFormulario!: FormGroup;
 

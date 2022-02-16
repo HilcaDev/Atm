@@ -13,15 +13,13 @@ import { messages } from 'src/app/core/constants/swalFire';
   styleUrls: ['./tranfer-money.component.scss']
 })
 export class TranferMoneyComponent {
-
   miFormulario!: FormGroup;
   arrayFriends: IdataAccountFriend[] = [];
   amountFriend!:number;
   accountFriend!:number;
   nameFriend!:string;
 
-  constructor(private fb: FormBuilder, private atmService: AtmService,
-    @Inject('localSRepository') private localStorageService: ILocalSRepository) { }
+  constructor(private fb: FormBuilder, private atmService: AtmService, @Inject('localSRepository') private localStorageService: ILocalSRepository) { }
 
   ngOnInit(): void {
     this.createForm();
@@ -41,7 +39,6 @@ export class TranferMoneyComponent {
     const arrayFriends:IdataAccountFriend[] = this.localStorageService.getLocalStorage('storageArrayFriends');
     const friend = arrayFriends.find(elemento => elemento.numberAccount === transferAccount);
     if (friend !== undefined){
-      console.log('friend',friend)
       this.amountFriend = friend.accountBalance;
       this.accountFriend = friend.numberAccount;
       this.nameFriend = friend.fullName;

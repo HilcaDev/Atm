@@ -10,11 +10,10 @@ import { ILocalSRepository } from '../../domain/repository/localS.repository';
   styleUrls: ['./withdrawals.component.scss']
 })
 export class WithdrawalsComponent implements OnInit {
-
   myUser!: IdataAccounts;
   miFormulario!: FormGroup;
-  constructor(private fb: FormBuilder, private atmService: AtmService,
-    @Inject('localSRepository') private localStorageService: ILocalSRepository) { }
+
+  constructor(private fb: FormBuilder, private atmService: AtmService, @Inject('localSRepository') private localStorageService: ILocalSRepository) { }
 
   ngOnInit(): void {
     this.createForm();

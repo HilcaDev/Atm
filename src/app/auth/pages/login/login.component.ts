@@ -11,7 +11,6 @@ import { messages } from '../../../core/constants/swalFire';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-
   miFormulario!: FormGroup;
 
   constructor(
@@ -31,10 +30,7 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    //console.log(this.miFormulario.value);
     const { username, password } = this.miFormulario.value;
-    console.log(username, password)
-
     if (this.authService.validation(username, password)) {
       this.router.navigateByUrl('/pages/myAccount');
     } else {
@@ -43,47 +39,5 @@ export class LoginComponent implements OnInit {
   }
 
   get usernameField() { return this.miFormulario.get('username') }
-
   get passwordField() { return this.miFormulario.get('password') }
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   // this.storageService.saveSesion(this.miFormulario.value);
-
-
-   // this.authService.login(username,password); crear un usuario
-
-   // for (let i = 0; i < this.arrayUsers.length; i++) {
-     // if ((this.arrayUsers[i].username === username) && (this.arrayUsers[i].password === password)) {
-      //  console.log('acceso accedido');
-      //  break;
-
-     // } else {
-     //   console.log('acceso denegado');
-    //  }
-
-
-
-
-
-
-
-
-

@@ -7,7 +7,6 @@ import { IUser } from '../interfaces/auth.interface';
 
 @Injectable()
 export class AuthService implements IAuthRepository {
-
   private _user: IUser | undefined;
 
   constructor(private router: Router) { }
@@ -20,7 +19,6 @@ export class AuthService implements IAuthRepository {
         password: password
       }
       localStorage.setItem("userInformation", JSON.stringify(this._user));
-      //console.log('user', this._user)
       return true;
 
     } else {
@@ -33,71 +31,6 @@ export class AuthService implements IAuthRepository {
   }
 
   logout() {
-    //localStorage.removeItem('userInformation');
     localStorage.clear()
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   //CRAER USUARIO
-   // const usuario = {
-  //    username:username,
-   //   password:password
-   // }
-
- //   this.arrayUsuarios.push(usuario);
-  //  console.log(this.arrayUsuarios)
-
-
-    //if(userInfo === null){
-      //this.router.navigateByUrl('/auth/login');
-     // return false;
-    //}else{
-     // return true
-    //}
-
-
-      //prueba(){
-  // let x = JSON.parse(localStorage.getItem('userInformation') || '{}');
-  // console.log(x);
-  // return x
-  //}
-
- // verificar autenticacion
-  //if (!localStorage.getItem('userInformation')) {
-    //return false;
-  //} else {
-    //return true;
-  //}

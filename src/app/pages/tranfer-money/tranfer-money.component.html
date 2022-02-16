@@ -30,15 +30,14 @@
     <button type="submit" class="btn btn-info" [disabled]="!miFormulario.valid" onclick="transferMoney()">
       Transferir
     </button>
-
     <div class="my-4">
       <p *ngIf="amountFriend !== 0; else notFriend">
-        Su amig@ {{nameFriend | titlecase}} con cuenta {{ accountFriend }} tiene un saldo total de {{amountFriend | number}}
+        Su amig@ {{nameFriend | titlecase}} con cuenta {{ accountFriend }} tiene un saldo total de {{amountFriend |
+        number}}
       </p>
       <ng-template #notFriend>
         Usted no tiene ningun amig@ con ese número de cuenta.
       </ng-template>
     </div>
-
   </form>
 </div>

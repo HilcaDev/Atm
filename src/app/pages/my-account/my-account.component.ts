@@ -12,16 +12,13 @@ import { messages } from 'src/app/core/constants/swalFire';
   styleUrls: ['./my-account.component.scss']
 })
 export class MyAccountComponent {
-
   title = "Información Personal"
   myUser!: IdataAccounts;
   arrayFriends: IdataAccountFriend[] = [];
-  lenghtArrayFriends:number = 0;
+  lenghtArrayFriends: number = 0;
   date = new Date();
 
-
-  constructor(private AtmService: AtmService,
-    @Inject('localSRepository') private localStorageService: ILocalSRepository) { }
+  constructor(private AtmService: AtmService, @Inject('localSRepository') private localStorageService: ILocalSRepository) { }
 
   ngOnInit(): void {
     this.myAccount();
@@ -36,7 +33,7 @@ export class MyAccountComponent {
   getNumberAccountsFriends() {
     if (localStorage.hasOwnProperty("storageArrayFriends")) {
       this.arrayFriends = this.localStorageService.getLocalStorage('storageArrayFriends');
-       this.lenghtArrayFriends = this.arrayFriends.length;
+      this.lenghtArrayFriends = this.arrayFriends.length;
     } else {
       this.lenghtArrayFriends = 0;
     }

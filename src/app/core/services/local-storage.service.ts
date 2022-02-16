@@ -3,7 +3,6 @@ import { ILocalSRepository } from '../../domain/repository/localS.repository';
 
 @Injectable()
 export class LocalStorageService implements ILocalSRepository {
-
   constructor() { }
 
   setLocalStorage(name: string, value: any) {
