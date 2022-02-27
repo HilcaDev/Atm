@@ -3,9 +3,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AtmService } from 'src/app/core/services/atm.service';
 import { ILocalSRepository } from 'src/app/domain/repository/localS.repository';
 import { LocalStorageService } from '../../core/services/local-storage.service';
-import { IdataAccountFriend } from '../../core/interfaces/dataAccount.interface';
 import Swal from 'sweetalert2';
-import { messages } from 'src/app/core/constants/swalFire';
+import { IAuthRepository } from 'src/app/domain/repository/auth.repository';
+import { messagesSwalFire } from '../../core/constants/swalFire';
 
 @Component({
   selector: 'app-tranfer-money',
@@ -14,39 +14,28 @@ import { messages } from 'src/app/core/constants/swalFire';
 })
 export class TranferMoneyComponent {
   miFormulario!: FormGroup;
-  arrayFriends: IdataAccountFriend[] = [];
-  amountFriend!:number;
-  accountFriend!:number;
-  nameFriend!:string;
 
-  constructor(private fb: FormBuilder, private atmService: AtmService, @Inject('localSRepository') private localStorageService: ILocalSRepository) { }
+  constructor(private fb: FormBuilder, private atmService: AtmService, @Inject('localSRepository') private localStorageService: ILocalSRepository,
+  @Inject('authRepository') private authService: IAuthRepository) { }
 
   ngOnInit(): void {
     this.createForm();
   }
 
-  createForm() {
+  createForm():void {
     this.miFormulario = this.fb.group({
       transferValue: ['', [Validators.required, Validators.min(0)]],
       transferAccount: ['', [Validators.required, Validators.min(0)]]
     })
   }
 
-  transferMoney() {
-    const { transferValue, transferAccount } = this.miFormulario.value;
-    this.atmService.transferMoney(transferValue, transferAccount);
-    this.atmService.verificationSameAccounts();
-    const arrayFriends:IdataAccountFriend[] = this.localStorageService.getLocalStorage('storageArrayFriends');
-    const friend = arrayFriends.find(elemento => elemento.numberAccount === transferAccount);
-    if (friend !== undefined){
-      this.amountFriend = friend.accountBalance;
-      this.accountFriend = friend.numberAccount;
-      this.nameFriend = friend.fullName;
+  transferMoney():void{
+    if(this.atmService.transferMoney(this.miFormulario.value)){
+      if (!this.atmService.coincidencias()) {
+        this.authService.setMessage(messagesSwalFire.transferHighterThanBalance)
+      }
     } else {
-      Swal.fire(messages[4]);
-      this.amountFriend = 0;
-      this.accountFriend = 0;
-      this.nameFriend = '';
+      this.authService.setMessage(messagesSwalFire.numberAccountNotExist);
     }
   }
 

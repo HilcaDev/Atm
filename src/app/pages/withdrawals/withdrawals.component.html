@@ -2,7 +2,7 @@
   <form [formGroup]="miFormulario" (ngSubmit)="withdrawal()" class="mt-5" style="width: 40rem;">
     <div class="form-group mb-3">
       <h2 class="text-info text-center fw-bold mb-3">Retiros</h2>
-      <label class="my-2">Valor a retirar</label>
+      <label class="my-2"><i class="fa-solid fa-dollar-sign text-info mx-1"></i>Valor a retirar</label>
       <input type="number" class="form-control" placeholder="Ingrese el valor a retirar"
         formControlName="withdrawalValue">
       <div class="form-text text-danger" *ngIf="withdrawalField?.invalid && withdrawalField?.touched">

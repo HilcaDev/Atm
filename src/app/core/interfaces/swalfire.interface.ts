@@ -1,7 +1,7 @@
 import { SweetAlertIcon } from "sweetalert2";
 
-export interface SwalFire {
+export interface ISwalfire{
   icon: SweetAlertIcon | undefined,
-  title: string | undefined,
-  text: string
+  title: string,
+  text?: string
 }

@@ -1,9 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import Swal from 'sweetalert2';
 import { IAuthRepository } from '../../../domain/repository/auth.repository';
-import { messages } from '../../../core/constants/swalFire';
+import { ILocalSRepository } from 'src/app/domain/repository/localS.repository';
+import { messagesSwalFire } from '../../../core/constants/swalFire';
 
 @Component({
   selector: 'app-login',
@@ -13,10 +13,8 @@ import { messages } from '../../../core/constants/swalFire';
 export class LoginComponent implements OnInit {
   miFormulario!: FormGroup;
 
-  constructor(
-    @Inject('authRepository') private authService: IAuthRepository,
-    private fb: FormBuilder,
-    private router: Router) { }
+  constructor(@Inject('authRepository') private authService: IAuthRepository, private fb: FormBuilder, private router: Router,
+    @Inject('localSRepository') private localStorageService: ILocalSRepository) { }
 
   ngOnInit(): void {
     this.createForm();
@@ -29,13 +27,16 @@ export class LoginComponent implements OnInit {
     })
   }
 
-  login() {
+  login():void {
     const { username, password } = this.miFormulario.value;
-    if (this.authService.validation(username, password)) {
+    const userFind = this.authService.validation(username, password);
+    if (userFind) {
+      this.localStorageService.setLocalStorage('userAccount', userFind)
       this.router.navigateByUrl('/pages/myAccount');
     } else {
-      Swal.fire(messages[1]);
+      this.authService.setMessage(messagesSwalFire.accessDenied);
     }
+    this.miFormulario.reset();
   }
 
   get usernameField() { return this.miFormulario.get('username') }

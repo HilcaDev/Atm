@@ -1,30 +1,30 @@
-import { SwalFire } from '../interfaces/swalFire.interface';
-
-export const messages: SwalFire[] = [
-  {
-    icon: 'error',
-    title: 'Saldo Insuficiente',
-    text: 'No cuenta con saldo suficiente para realizar esta transacción.'
+export const messagesSwalFire = {
+  accessDenied: {
+    title:'Error...',
+    text:'Acceso denegado, favor verificar sus credenciales !',
+    icon:"error",
   },
-  {
-    icon: 'error',
-    title: 'Error...',
-    text: 'Acceso denegado, favor verificar sus credenciales !'
+  changeCredentials: {
+    title:'Corregir credenciales',
+    text:'Los datos sumnistrados ya fueron utilizados por otro usuario',
+    icon:"error",
   },
-  {
-    icon: 'error',
-    title: 'Corregir credenciales',
-    text: 'Los datos sumnistrados ya fueron utilizados por otro usuario'
+  correctRegister:{
+    title:'Usuario registrado',
+    text:'Usuario registrado exitosamente',
+    icon:"success"
   },
-  {
-    icon: 'success',
-    title: 'Usuario registrado',
-    text: 'Usuario registrado exitosamente'
+  numberAccountNotExist:{
+    title:'Número de cuenta incorrecta',
+    text:'No existe un usuario con ese número de cuenta',
+    icon:"warning"
   },
-  {
-    icon: 'warning',
-    title: 'Lo sentimos !',
-    text: 'Ninguno de sus amigos tiene ese número de cuenta'
+  transferHighterThanBalance:{
+    title:'Valor a transferir mayor que el disponible en cuenta',
+    icon:"error"
+  },
+  withdrawalHighterThanBalance:{
+    title:'Valor a retirar mayor que el disponible en cuenta',
+    icon:"error"
   }
-]
-
+};

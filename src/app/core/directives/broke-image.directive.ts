@@ -11,6 +11,6 @@ export class BrokeImageDirective {
   @HostListener('error')
   UploadImage(){
     const element = this.elementRef.nativeElement;
-    element.src = this.urlImage || 'https://dam.muyinteresante.com.mx/wp-content/uploads/2020/04/error-404.jpg'
+    element.src = this.urlImage || 'assets/images/error-404.jpg'
   }
 }

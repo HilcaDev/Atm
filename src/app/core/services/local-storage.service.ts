@@ -8,7 +8,12 @@ export class LocalStorageService implements ILocalSRepository {
   setLocalStorage(name: string, value: any) {
     return localStorage.setItem(name, JSON.stringify(value));
   }
+
   getLocalStorage(name: string) {
     return JSON.parse(localStorage.getItem(name) || '{}');
+  }
+
+  removeLocalStorage(name:string){
+    return localStorage.removeItem(name);
   }
 }

@@ -3,10 +3,10 @@
     <div class="card-body">
       <div class="row">
         <div class="col">
-          <h3 class="text-info text-center fw-bold my-3">Transferencias</h3>
+          <h3 class="text-info text-center fw-bold my-3">Crear Cuenta</h3>
           <form [formGroup]="miFormulario" (ngSubmit)="createAccountNewUser()">
             <div class="form-group mb-3">
-              <label>Nombre Completo</label>
+              <label><i class="fa-solid fa-user text-info mx-1"></i>Nombre Completo</label>
               <input type="text" class="form-control" placeholder="Ingrese su nombre completo"
                 formControlName="fullName">
               <div class="form-text text-danger" *ngIf="fullNameField?.invalid && fullNameField?.touched">
@@ -16,7 +16,7 @@
               </div>
             </div>
             <div class="form-group mb-3">
-              <label>Email</label>
+              <label><i class="fa-solid fa-envelope text-info mx-1"></i>Email</label>
               <input type="email" class="form-control" placeholder="Ingrese su email" formControlName="email">
               <div class="form-text text-danger" *ngIf="emailField?.invalid && emailField?.touched">
                 <div *ngIf="emailField?.errors?.['required']">
@@ -28,7 +28,7 @@
               </div>
             </div>
             <div class="form-group mb-3">
-              <label>Rol</label>
+              <label><i class="fa-solid fa-user-tie text-info mx-1"></i>Rol</label>
               <input type="text" class="form-control" placeholder="Diligencie su cargo" formControlName="rol">
               <div class="form-text text-danger" *ngIf="rolField?.invalid && rolField?.touched">
                 <div *ngIf="rolField?.errors?.['required']">
@@ -40,20 +40,20 @@
               </div>
             </div>
             <div class="form-group mb-3">
-              <label>Numero Cuenta</label>
+              <label><i class="fa-solid fa-wallet text-info mx-1"></i>Numero Cuenta</label>
               <input type="number" class="form-control" placeholder="Diligencie su número de cuenta"
-                formControlName="numberAccount">
-              <div class="form-text text-danger" *ngIf="numberAccountField?.invalid && numberAccountField?.touched">
-                <div *ngIf="numberAccountField?.errors?.['required']">
+                formControlName="numberAccountBalance">
+              <div class="form-text text-danger" *ngIf="numberAccountBalanceField && numberAccountBalanceField?.touched">
+                <div *ngIf="numberAccountBalanceField?.errors?.['required']">
                   Debe diligenciar un valor
                 </div>
-                <div *ngIf="numberAccountField?.errors?.['min']">
+                <div *ngIf="numberAccountBalanceField?.errors?.['min']">
                   El valor diligenciado no puede ser negativo
                 </div>
               </div>
             </div>
             <div class="form-group mb-3">
-              <label>Saldo Cuenta</label>
+              <label><i class="fa-solid fa-dollar-sign text-info mx-1"></i>Saldo Cuenta</label>
               <input type="number" class="form-control" placeholder="Diligencie su saldo inicial"
                 formControlName="accountBalance">
               <div class="form-text text-danger" *ngIf="accountBalanceField?.invalid && accountBalanceField?.touched">
@@ -66,7 +66,7 @@
               </div>
             </div>
             <div class="form-group mb-3">
-              <label>Username</label>
+              <label><i class="fa-solid fa-hashtag text-info mx-1"></i>Username</label>
               <input type="text" class="form-control" placeholder="Diligencie su username" formControlName="username">
               <div class="form-text text-danger" *ngIf="usernameField?.invalid && usernameField?.touched">
                 <div *ngIf="usernameField?.errors?.['required']">
@@ -75,7 +75,7 @@
               </div>
             </div>
             <div class="form-group mb-3">
-              <label>Contraseña</label>
+              <label><i class="fa-solid fa-lock text-info mx-1"></i>Contraseña</label>
               <input type="password" class="form-control" placeholder="Diligencie su contraseña"
                 formControlName="password">
               <div class="form-text text-danger" *ngIf="passwordField?.invalid && passwordField?.touched">

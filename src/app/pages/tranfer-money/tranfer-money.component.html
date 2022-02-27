@@ -2,7 +2,7 @@
   <form [formGroup]="miFormulario" (ngSubmit)="transferMoney()" class="mt-5" style="width: 40rem;">
     <div class="form-group mb-3">
       <h2 class="text-info text-center fw-bold mb-3">Transferencias</h2>
-      <label class="my-2">Valor a depositar</label>
+      <label class="my-2"><i class="fa-solid fa-dollar-sign text-info mx-1"></i>Valor a depositar</label>
       <input type="number" class="form-control" placeholder="Ingrese el valor a depositar"
         formControlName="transferValue">
       <div class="form-text text-danger" *ngIf="transferValueField?.invalid && transferValueField?.touched">
@@ -15,7 +15,7 @@
       </div>
     </div>
     <div class="form-group mb-3">
-      <label class="my-2">Numero de cuenta</label>
+      <label class="my-2"><i class="fa-solid fa-wallet text-info mx-1"></i>Numero de cuenta</label>
       <input type="number" class="form-control" placeholder="Ingrese el número de la cuenta a la que va a transferir"
         formControlName="transferAccount">
       <div class="form-text text-danger" *ngIf="transferAccountField?.invalid && transferAccountField?.touched">
@@ -27,17 +27,8 @@
         </div>
       </div>
     </div>
-    <button type="submit" class="btn btn-info" [disabled]="!miFormulario.valid" onclick="transferMoney()">
+    <button type="submit" class="btn btn-info" [disabled]="!miFormulario.valid">
       Transferir
     </button>
-    <div class="my-4">
-      <p *ngIf="amountFriend !== 0; else notFriend">
-        Su amig@ {{nameFriend | titlecase}} con cuenta {{ accountFriend }} tiene un saldo total de {{amountFriend |
-        number}}
-      </p>
-      <ng-template #notFriend>
-        Usted no tiene ningun amig@ con ese número de cuenta.
-      </ng-template>
-    </div>
   </form>
 </div>

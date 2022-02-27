@@ -1,8 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AtmService } from '../../core/services/atm.service';
-import { IdataAccounts } from '../../core/interfaces/dataAccount.interface';
 import { ILocalSRepository } from 'src/app/domain/repository/localS.repository';
+import { IUser } from '../../auth/interfaces/auth.interface';
 
 @Component({
   selector: 'app-deposit-money',
@@ -10,29 +10,27 @@ import { ILocalSRepository } from 'src/app/domain/repository/localS.repository';
   styleUrls: ['./deposit-money.component.scss']
 })
 export class DepositMoneyComponent implements OnInit {
-  myUser!:IdataAccounts;
+  myUser!:IUser;
   miFormulario!: FormGroup;
 
-  constructor(
-    @Inject('localSRepository') private localStorageService:ILocalSRepository,
-    private fb: FormBuilder, private atmService:AtmService) { }
+  constructor(@Inject('localSRepository') private localStorageService:ILocalSRepository, private fb: FormBuilder, private atmService:AtmService) { }
 
   ngOnInit(): void {
     this.createForm();
   }
 
-  createForm() {
+  createForm():void {
     this.miFormulario = this.fb.group({
       depositValue: ['', [Validators.required,Validators.min(0)]],
     })
   }
 
-  deposit(){
-    const { depositValue } = this.miFormulario.value;
+  deposit():void{
+    const {depositValue} = this.miFormulario.value;
     this.atmService.depositMoney(depositValue);
   }
 
-  getBalanceAccount(){
+  getBalanceAccount():number{
     let dataAccount = this.localStorageService.getLocalStorage('userAccount')
     this.myUser = dataAccount;
     return this.myUser.accountBalance;

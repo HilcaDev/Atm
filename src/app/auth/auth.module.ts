@@ -15,6 +15,6 @@ import { localSProvider } from '../domain/providers/localS.provider';
     AuthRoutingModule,
     ReactiveFormsModule
   ],
-  providers: [AuthProvider]
+  providers: [AuthProvider, localSProvider]
 })
 export class AuthModule { }

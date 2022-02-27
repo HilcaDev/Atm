@@ -2,7 +2,7 @@
   <form [formGroup]="miFormulario" (ngSubmit)="deposit()" class="mt-5" style="width: 40rem;">
     <div class="form-group mb-3">
       <h2 class="text-info text-center fw-bold mb-3">Consignaciones</h2>
-      <label class="my-2">Valor a depositar</label>
+      <label class="my-2"><i class="fa-solid fa-dollar-sign text-info mx-1"></i>Valor a depositar</label>
       <input type="number" class="form-control" placeholder="Ingrese el valor a depositar"
         formControlName="depositValue">
       <div class="form-text text-danger" *ngIf="depositField?.invalid && depositField?.touched">
