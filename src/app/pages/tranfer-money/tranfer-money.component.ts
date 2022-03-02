@@ -1,9 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { AtmService } from 'src/app/core/services/atm.service';
 import { ILocalSRepository } from 'src/app/domain/repository/localS.repository';
-import { LocalStorageService } from '../../core/services/local-storage.service';
-import Swal from 'sweetalert2';
 import { IAuthRepository } from 'src/app/domain/repository/auth.repository';
 import { messagesSwalFire } from '../../core/constants/swalFire';
 
@@ -16,31 +14,33 @@ export class TranferMoneyComponent {
   miFormulario!: FormGroup;
 
   constructor(private fb: FormBuilder, private atmService: AtmService, @Inject('localSRepository') private localStorageService: ILocalSRepository,
-  @Inject('authRepository') private authService: IAuthRepository) { }
+    @Inject('authRepository') private authService: IAuthRepository) { }
 
   ngOnInit(): void {
     this.createForm();
   }
 
-  createForm():void {
+  createForm(): void {
     this.miFormulario = this.fb.group({
       transferValue: ['', [Validators.required, Validators.min(0)]],
       transferAccount: ['', [Validators.required, Validators.min(0)]]
     })
   }
 
-  transferMoney():void{
-    if(this.atmService.transferMoney(this.miFormulario.value)){
+  transferMoney(): void {
+    if (this.atmService.transferMoney(this.miFormulario.value)) {
       if (!this.atmService.coincidencias()) {
-        this.authService.setMessage(messagesSwalFire.transferHighterThanBalance)
+        this.authService.setMessage(messagesSwalFire.transferHighterThanBalance);
+      } else {
+        this.authService.setMessage(messagesSwalFire.successfulTransaction);
       }
     } else {
       this.authService.setMessage(messagesSwalFire.numberAccountNotExist);
     }
   }
 
-  get transferValueField() { return this.miFormulario.get('transferValue') };
-  get transferAccountField() { return this.miFormulario.get('transferAccount') };
+  get transferValueField(): AbstractControl | null { return this.miFormulario.get('transferValue') };
+  get transferAccountField(): AbstractControl | null { return this.miFormulario.get('transferAccount') };
 }
 
 

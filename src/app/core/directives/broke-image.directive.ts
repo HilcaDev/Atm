@@ -4,12 +4,12 @@ import { Directive, ElementRef, HostListener, Input } from '@angular/core';
   selector: '[brokeImage]'
 })
 export class BrokeImageDirective {
-  @Input() urlImage!:string;
+  @Input() urlImage!: string;
 
-  constructor(private elementRef:ElementRef) { }
+  constructor(private elementRef: ElementRef) { }
 
   @HostListener('error')
-  UploadImage(){
+  UploadImage() {
     const element = this.elementRef.nativeElement;
     element.src = this.urlImage || 'assets/images/error-404.jpg'
   }

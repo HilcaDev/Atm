@@ -1,9 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { IUser } from 'src/app/auth/interfaces/auth.interface';
 import { AtmService } from 'src/app/core/services/atm.service';
 import { ILocalSRepository } from '../../domain/repository/localS.repository';
-import { AuthService } from '../../auth/services/auth.service';
 import { IAuthRepository } from 'src/app/domain/repository/auth.repository';
 import { messagesSwalFire } from 'src/app/core/constants/swalFire';
 
@@ -22,10 +21,10 @@ export class CreateAccountComponent {
   }
 
   ngOnInit(): void {
-   this.createForm();
+    this.createForm();
   }
 
-  createForm():void {
+  createForm(): void {
     this.miFormulario = this.fb.group({
       fullName: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
@@ -37,9 +36,9 @@ export class CreateAccountComponent {
     })
   }
 
-  getNewUser():IUser{
-    let id = (Date.now()/1000);
-    const {fullName,email,rol,numberAccountBalance,accountBalance,username,password} = this.miFormulario.value;
+  getNewUser(): IUser {
+    let id = (Date.now() / 1000);
+    const { fullName, email, rol, numberAccountBalance, accountBalance, username, password } = this.miFormulario.value;
     this.newUser = {
       id,
       username,
@@ -49,26 +48,27 @@ export class CreateAccountComponent {
       rol,
       numberAccountBalance,
       accountBalance,
-      transactions:[],
-      friends:[]
+      transactions: [],
+      friends: []
     }
     return this.newUser;
   }
 
-  createAccountNewUser():void{
+  createAccountNewUser(): void {
     let newUser = this.atmService.createNewUser(this.getNewUser());
     if (!this.atmService.coincidencias()) {
       this.authService.setMessage(messagesSwalFire.changeCredentials);
-    }else{
+    } else {
       this.authService.setMessage(messagesSwalFire.correctRegister);
     }
+    this.miFormulario.reset();
   }
 
-  get fullNameField() { return this.miFormulario.get('fullName') };
-  get emailField() { return this.miFormulario.get('email') };
-  get rolField() { return this.miFormulario.get('rol') };
-  get numberAccountBalanceField() { return this.miFormulario.get('numberAccountBalance') };
-  get accountBalanceField() { return this.miFormulario.get('accountBalance') };
-  get usernameField() { return this.miFormulario.get('username') };
-  get passwordField() { return this.miFormulario.get('password') };
+  get fullNameField(): AbstractControl | null { return this.miFormulario.get('fullName') };
+  get emailField(): AbstractControl | null { return this.miFormulario.get('email') };
+  get rolField(): AbstractControl | null { return this.miFormulario.get('rol') };
+  get numberAccountBalanceField(): AbstractControl | null { return this.miFormulario.get('numberAccountBalance') };
+  get accountBalanceField(): AbstractControl | null { return this.miFormulario.get('accountBalance') };
+  get usernameField(): AbstractControl | null { return this.miFormulario.get('username') };
+  get passwordField(): AbstractControl | null { return this.miFormulario.get('password') };
 }

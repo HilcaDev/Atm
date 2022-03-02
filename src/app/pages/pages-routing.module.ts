@@ -9,32 +9,32 @@ import { WithdrawalsComponent } from './withdrawals/withdrawals.component';
 
 const routes: Routes = [
   {
-    path:'',
-    component:HomeComponent,
-    children:[
+    path: '',
+    component: HomeComponent,
+    children: [
       {
-        path:'myAccount',
-        component:MyAccountComponent
+        path: 'myAccount',
+        component: MyAccountComponent
       },
       {
-        path:'createAccount',
-        component:CreateAccountComponent
+        path: 'createAccount',
+        component: CreateAccountComponent
       },
       {
-        path:'deposit',
-        component:DepositMoneyComponent
+        path: 'deposit',
+        component: DepositMoneyComponent
       },
       {
-        path:'tranfer',
-        component:TranferMoneyComponent
+        path: 'tranfer',
+        component: TranferMoneyComponent
       },
       {
-        path:'withdrawals',
-        component:WithdrawalsComponent
+        path: 'withdrawals',
+        component: WithdrawalsComponent
       },
       {
-        path:'**',
-        redirectTo:'myAccount'
+        path: '**',
+        redirectTo: 'myAccount'
       }
     ]
   }

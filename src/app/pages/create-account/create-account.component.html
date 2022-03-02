@@ -43,7 +43,8 @@
               <label><i class="fa-solid fa-wallet text-info mx-1"></i>Numero Cuenta</label>
               <input type="number" class="form-control" placeholder="Diligencie su número de cuenta"
                 formControlName="numberAccountBalance">
-              <div class="form-text text-danger" *ngIf="numberAccountBalanceField && numberAccountBalanceField?.touched">
+              <div class="form-text text-danger"
+                *ngIf="numberAccountBalanceField && numberAccountBalanceField?.touched">
                 <div *ngIf="numberAccountBalanceField?.errors?.['required']">
                   Debe diligenciar un valor
                 </div>

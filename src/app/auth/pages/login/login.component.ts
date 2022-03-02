@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { IAuthRepository } from '../../../domain/repository/auth.repository';
 import { ILocalSRepository } from 'src/app/domain/repository/localS.repository';
@@ -20,14 +20,14 @@ export class LoginComponent implements OnInit {
     this.createForm();
   }
 
-  createForm() {
+  createForm(): void {
     this.miFormulario = this.fb.group({
       username: ['', [Validators.required]],
       password: ['', [Validators.required, Validators.minLength(6)]]
     })
   }
 
-  login():void {
+  login(): void {
     const { username, password } = this.miFormulario.value;
     const userFind = this.authService.validation(username, password);
     if (userFind) {
@@ -39,6 +39,6 @@ export class LoginComponent implements OnInit {
     this.miFormulario.reset();
   }
 
-  get usernameField() { return this.miFormulario.get('username') }
-  get passwordField() { return this.miFormulario.get('password') }
+  get usernameField(): AbstractControl | null { return this.miFormulario.get('username') }
+  get passwordField(): AbstractControl | null { return this.miFormulario.get('password') }
 }

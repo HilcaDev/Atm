@@ -21,7 +21,7 @@ export class AuthService implements IAuthRepository {
     }
   }
 
-  setMessage(message: ISwalfire):void {
+  setMessage(message: ISwalfire): void {
     Swal.fire(
       message.title,
       message.text,

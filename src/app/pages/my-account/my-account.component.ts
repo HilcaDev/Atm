@@ -20,7 +20,7 @@ export class MyAccountComponent {
     this.myAccount();
   }
 
-  myAccount():void {
+  myAccount(): void {
     this.myUser = this.localStorageService.getLocalStorage('userAccount');
   }
 }

@@ -22,12 +22,12 @@ export class TopbarComponent implements OnInit {
     this.getUserInformation();
   }
 
-  logout():void {
+  logout(): void {
     this.router.navigateByUrl('/auth');
     this.authService.logout();
   }
 
-  getUserInformation():void {
+  getUserInformation(): void {
     this.user = this.localStorageService.getLocalStorage('userAccount');
   }
 }

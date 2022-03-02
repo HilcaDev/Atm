@@ -1,17 +1,17 @@
 export interface IUser {
-  id:number;
-  username:string;
-  password:string;
+  id: number;
+  username: string;
+  password: string;
   fullName: string,
   email: string,
   rol: string,
   accountBalance: number,
-  numberAccountBalance:number,
-  friends:IUser[],
-  transactions:ITransaction[]
+  numberAccountBalance: number,
+  friends: IUser[],
+  transactions: ITransaction[]
 }
 
 export interface ITransaction {
-  transferAccount:number,
+  transferAccount: number,
   transferValue: number
 }

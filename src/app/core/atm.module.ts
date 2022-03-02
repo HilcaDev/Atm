@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '../shared/shared.module';
 import { localSProvider } from '../domain/providers/localS.provider';
-import { AtmService } from './services/atm.service';
 import { BrokeImageDirective } from './directives/broke-image.directive';
 
 @NgModule({
@@ -13,7 +12,7 @@ import { BrokeImageDirective } from './directives/broke-image.directive';
     CommonModule,
     SharedModule
   ],
-  exports:[
+  exports: [
     BrokeImageDirective
   ],
   providers: [localSProvider]
